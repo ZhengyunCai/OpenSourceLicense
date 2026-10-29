@@ -1,0 +1,161 @@
+{
+ "name": "（待填）",
+ "sid": "（待填）",
+ "klass": "（待填）",
+ "teacher": "祝欣蓉",
+ "report_date": "2026年10月29日",
+ "total_files": "242",
+ "java_files": "201",
+ "main_java": "107",
+ "test_java": "94",
+ "loc": "5.2万",
+ "test_deps": "8",
+ "no_license": "5",
+ "duration": "93.32",
+ "table1": [
+  [
+   "工具",
+   "许可证",
+   "与本项目匹配的优点",
+   "选型结论"
+  ],
+  [
+   "ScanCode Toolkit",
+   "Apache-2.0",
+   "许可证/版权/包/依赖识别准确；输出 JSON/HTML/CSV/SPDX；手册评为首选",
+   "选定：个人电脑即可运行"
+  ],
+  [
+   "Apache Rat",
+   "Apache-2.0",
+   "Maven/Ant 插件查许可证头",
+   "不选：本机无 JDK/Maven；仅查许可证头"
+  ],
+  [
+   "Fossology / FOSSLight",
+   "GPL-2.0 / AGPL-3.0",
+   "Web 平台、多引擎",
+   "不选：需服务端数据库，部署过重"
+  ],
+  [
+   "ORT / Licensee.js 等",
+   "Apache-2.0 / MIT",
+   "端到端流水线；npm 依赖检查",
+   "不选：ORT 需联网下载全部依赖；npm 类仅适用 npm 生态"
+  ]
+ ],
+ "table2": [
+  [
+   "问题",
+   "现象",
+   "解决"
+  ],
+  [
+   "国内镜像缺新版包",
+   "镜像索引只解析出旧版 sdist，pip 报 No matching distribution",
+   "改用阿里云镜像，定位 32.5.0 cp313 wheel 本地安装"
+  ],
+  [
+   "大文件下载反复中断",
+   "126 MB wheel 下载多次超时/SSL 中断，pip 重试 17 分钟后失败",
+   "按 1 MB 分块、HTTP Range 六线程并发断点下载，zipfile 校验后安装"
+  ],
+  [
+   "插件钩子报错",
+   "启动报 did not find any 'pre_scan' hooks",
+   "pluggy 1.7.0 与 plugincode 32.0.0 不兼容，降级 pluggy==1.5.0"
+  ],
+  [
+   "环境隔离与中文乱码",
+   "全局安装污染系统 Python；控制台 GBK 显示异常",
+   "python -m venv 独立环境；--json-pp 输出 UTF-8 文件"
+  ]
+ ],
+ "table3": [
+  [
+   "统计指标",
+   "结果"
+  ],
+  [
+   "扫描对象",
+   "commons-text-1.12.0 源码树（242 个文件、46 个目录，2.15 MB）"
+  ],
+  [
+   "检出许可证的文件",
+   "237 个（占 98.0%）；未检出 5 个（占 2.0%）"
+  ],
+  [
+   "检出许可证/规则种类",
+   "7 种（明细见表 4）"
+  ],
+  [
+   "版权声明（去重）",
+   "1 条：Copyright 2014-2024 The Apache Software Foundation"
+  ],
+  [
+   "检出软件包（purl）",
+   "1 个：pkg:maven/org.apache.commons/commons-text@1.12.0"
+  ],
+  [
+   "扫描耗时",
+   "93.32 秒（4 进程并行，约 2.75 文件/秒，0 个错误）"
+  ]
+ ],
+ "table4": [
+  [
+   "许可证（SPDX 规则）",
+   "文件数",
+   "代表文件与说明"
+  ],
+  [
+   "apache-2.0",
+   "236",
+   "全部 Java 源码、pom.xml、LICENSE.txt、.asf.yaml 等"
+  ],
+  [
+   "generic-cla",
+   "2",
+   "README.md、CONTRIBUTING.md：命中“贡献者许可协议（CLA）”通用规则，属声明类文本"
+  ],
+  [
+   "unknown-license-reference",
+   "1",
+   "README.md：提及许可证但未附全文，需人工确认"
+  ],
+  [
+   "gpl-2.0 等组合表达式",
+   "1",
+   "lcs-perf-analysis-inputs.csv：测试输入语料，详见 4.2 节"
+  ]
+ ],
+ "table5": [
+  [
+   "风险/发现",
+   "等级",
+   "依据",
+   "整改建议"
+  ],
+  [
+   "测试数据文件含 GPL-2.0 文本片段",
+   "低",
+   "lcs-perf-analysis-inputs.csv 第 1-2 行命中 GPL 规则（得分 42.11）",
+   "替换语料或注明来源；SBOM 中标注，避免下游审计误判"
+  ],
+  [
+   "源码文件无文件级版权行",
+   "提示",
+   "Java 文件头部为 ASF 标准许可头，版权集中于 NOTICE.txt",
+   "随发布物附送 LICENSE 与 NOTICE 即满足 Apache-2.0 第 4 条"
+  ],
+  [
+   "5 个文件未检出许可证",
+   "提示",
+   "均为 RAT 排除清单内或二进制/统计文件",
+   "维持现状；SBOM 中标记 n/a 并注明豁免依据"
+  ]
+ ],
+ "s41": "242 个文件中有 236 个检出 apache-2.0（占 97.5%），覆盖全部 201 个 Java 源文件、17 个 XML 文件及全部项目声明文件。工具判定结果与项目自带的三处声明——LICENSE.txt（Apache-2.0 全文）、NOTICE.txt（ASF 版权归属）、pom.xml 的 <license> 元数据——完全一致，未发现“代码实际许可证与项目声明不符”的情形。",
+ "s42": "最值得关注的是：ScanCode 在 src/test/resources/.../lcs-perf-analysis-inputs.csv 中检出“gpl-1.0-plus AND gpl-2.0 AND classpath-exception-2.0 AND other-copyleft”表达式（命中第 1-2 行，得分 42.11）。人工复核确认：该文件是最长公共子序列性能基准的输入语料，前两行文本恰好复制自 OpenJDK 某源文件的 GPL-2.0 许可头片段，属于“内容里出现了许可文本”，而非“该文件以 GPL 授权”。判定：它不进入编译产物（test 资源不打包），不构成 copyleft 传染，但随源码包分发，建议替换语料或注明来源。这说明基于文本匹配的扫描器无法区分“许可文本巧合”与“真实授权”，印证了手册“误区 3”。",
+ "s44": "ScanCode 在全部文件中仅检出 1 条去重后的版权声明，即 NOTICE.txt 中的“Copyright 2014-2024 The Apache Software Foundation”；201 个 Java 文件头部均为 ASF 标准许可头，不含 Copyright 行，版权主体 100% 集中于 ASF。这符合 ASF 集中式版权惯例，但意味着仅依赖逐文件版权扫描生成 NOTICE/致谢文件会低估版权条数，必须与 NOTICE.txt 人工对账。",
+ "s46": "一是文本巧合误报：lcs-perf-analysis-inputs.csv 得分仅 42.11 仍被报告，审计时应设置阈值并人工复核；二是通用规则的不确定性：generic-cla、unknown-license-reference 均需人工定性；三是统计偏差：对 ASF 集中式版权结构，逐文件版权检出偏少（见 4.4 节）；四是能力边界：工具不判断许可证兼容性、不输出合规义务清单。综上，扫描结果必须人工复核后才能形成合规结论。"
+}
